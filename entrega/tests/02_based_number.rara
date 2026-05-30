@@ -1,0 +1,3 @@
+print [FF:16]
+print [1010:2]
+print [17:8]
