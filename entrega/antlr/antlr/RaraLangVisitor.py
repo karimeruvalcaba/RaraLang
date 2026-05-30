@@ -19,6 +19,11 @@ class RaraLangVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by RaraLangParser#assignStmt.
+    def visitAssignStmt(self, ctx:RaraLangParser.AssignStmtContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by RaraLangParser#int.
     def visitInt(self, ctx:RaraLangParser.IntContext):
         return self.visitChildren(ctx)
@@ -31,6 +36,11 @@ class RaraLangVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by RaraLangParser#string.
     def visitString(self, ctx:RaraLangParser.StringContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by RaraLangParser#var.
+    def visitVar(self, ctx:RaraLangParser.VarContext):
         return self.visitChildren(ctx)
 
 

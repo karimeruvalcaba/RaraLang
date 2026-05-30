@@ -26,6 +26,15 @@ class RaraLangListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by RaraLangParser#assignStmt.
+    def enterAssignStmt(self, ctx:RaraLangParser.AssignStmtContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#assignStmt.
+    def exitAssignStmt(self, ctx:RaraLangParser.AssignStmtContext):
+        pass
+
+
     # Enter a parse tree produced by RaraLangParser#int.
     def enterInt(self, ctx:RaraLangParser.IntContext):
         pass
@@ -50,6 +59,15 @@ class RaraLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by RaraLangParser#string.
     def exitString(self, ctx:RaraLangParser.StringContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#var.
+    def enterVar(self, ctx:RaraLangParser.VarContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#var.
+    def exitVar(self, ctx:RaraLangParser.VarContext):
         pass
 
 

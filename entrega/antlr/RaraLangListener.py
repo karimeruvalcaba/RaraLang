@@ -26,6 +26,51 @@ class RaraLangListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by RaraLangParser#assignStmt.
+    def enterAssignStmt(self, ctx:RaraLangParser.AssignStmtContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#assignStmt.
+    def exitAssignStmt(self, ctx:RaraLangParser.AssignStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#toTerm.
+    def enterToTerm(self, ctx:RaraLangParser.ToTermContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#toTerm.
+    def exitToTerm(self, ctx:RaraLangParser.ToTermContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#binaryExpr.
+    def enterBinaryExpr(self, ctx:RaraLangParser.BinaryExprContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#binaryExpr.
+    def exitBinaryExpr(self, ctx:RaraLangParser.BinaryExprContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#toFactor.
+    def enterToFactor(self, ctx:RaraLangParser.ToFactorContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#toFactor.
+    def exitToFactor(self, ctx:RaraLangParser.ToFactorContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#mulDiv.
+    def enterMulDiv(self, ctx:RaraLangParser.MulDivContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#mulDiv.
+    def exitMulDiv(self, ctx:RaraLangParser.MulDivContext):
+        pass
+
+
     # Enter a parse tree produced by RaraLangParser#int.
     def enterInt(self, ctx:RaraLangParser.IntContext):
         pass
@@ -50,6 +95,24 @@ class RaraLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by RaraLangParser#string.
     def exitString(self, ctx:RaraLangParser.StringContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#var.
+    def enterVar(self, ctx:RaraLangParser.VarContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#var.
+    def exitVar(self, ctx:RaraLangParser.VarContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#paren.
+    def enterParen(self, ctx:RaraLangParser.ParenContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#paren.
+    def exitParen(self, ctx:RaraLangParser.ParenContext):
         pass
 
 
