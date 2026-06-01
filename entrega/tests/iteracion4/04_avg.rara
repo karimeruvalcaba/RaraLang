@@ -1,0 +1,9 @@
+# Prueba del operador ≈ (promedio entero, piso de (a+b)/2)
+# 7 ≈ 3 = floor((7+3)/2) = 5
+print 7 ≈ 3
+# 4 ≈ 4 = floor((4+4)/2) = 4
+print 4 ≈ 4
+# Con negativos: -3 ≈ -1 = floor((-3-1)/2) = floor(-4/2) = -2
+x <-- ±3
+y <-- ±1
+print x ≈ y

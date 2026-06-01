@@ -1,0 +1,7 @@
+# Prueba del operador ± (negación unaria)
+# ±8 = -8
+print ±8
+# ± ±5 = - (-5) = 5  (doble negación)
+print ±±5
+# ±0 = 0
+print ±0

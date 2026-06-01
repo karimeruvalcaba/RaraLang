@@ -5,7 +5,8 @@ var_x: .word 0
 main:
 li $t0, 10
 sw $t0, var_x
-lw $a0, var_x
+lw $t0, var_x
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10

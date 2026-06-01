@@ -1,0 +1,5 @@
+# Mezcla de operadores Unicode con aritmética
+# (10 ⊞ 3) ≈ (4 ⊠ 5) = 1 ≈ 13 = floor((1+13)/2) = 7
+print (10 ⊞ 3) ≈ (4 ⊠ 5)
+# ± (3 + 2) = -5
+print ±(3 + 2)

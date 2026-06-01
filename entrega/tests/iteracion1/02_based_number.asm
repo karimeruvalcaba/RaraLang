@@ -1,19 +1,22 @@
 .text
 .globl main
 main:
-li $a0, 255
+li $t0, 255
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10
 li $v0, 11
 syscall
-li $a0, 10
+li $t0, 10
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10
 li $v0, 11
 syscall
-li $a0, 15
+li $t0, 15
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10

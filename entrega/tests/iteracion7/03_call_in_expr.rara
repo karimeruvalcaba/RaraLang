@@ -1,0 +1,9 @@
+# Llamada a función usada dentro de una expresión aritmética
+func cuadrado(n) {
+  return n × n
+}
+
+# cuadrado(3) + 1 = 9 + 1 = 10
+print cuadrado(3) + 1
+# cuadrado(4) × 2 = 16 × 2 = 32
+print cuadrado(4) × 2

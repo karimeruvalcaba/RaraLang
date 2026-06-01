@@ -1,0 +1,7 @@
+# While que itera un número conocido de veces e imprime en cada iteración
+# Debe imprimir: 1, 2, 3, 4, 5
+x <-- 1
+while x < 6 do {
+  print x
+  x <-- x + 1
+}

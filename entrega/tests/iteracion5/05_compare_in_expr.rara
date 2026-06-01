@@ -1,0 +1,6 @@
+# Comparación usada como valor en expresión aritmética
+x <-- 8
+# (x > 0) vale 1, entonces (x > 0) + 1 = 2
+print (x > 0) + 1
+# (x == 0) vale 0, entonces (x == 0) + 10 = 10
+print (x == 0) + 10

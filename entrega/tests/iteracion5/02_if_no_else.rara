@@ -1,0 +1,10 @@
+# if sin else: condición verdadera ejecuta el bloque
+x <-- 7
+if x > 5 then
+  print x
+# if sin else: condición falsa, no ejecuta nada
+y <-- 3
+if y > 5 then
+  print y
+# Si solo se imprime 7, la prueba pasa
+print 0

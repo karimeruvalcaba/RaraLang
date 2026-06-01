@@ -1,0 +1,7 @@
+# Función con un parámetro que retorna un valor
+func doble(x) {
+  return x + x
+}
+
+print doble(5)
+print doble(3)

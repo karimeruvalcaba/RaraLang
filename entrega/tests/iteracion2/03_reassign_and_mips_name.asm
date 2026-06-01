@@ -5,7 +5,8 @@ var_add: .word 0
 main:
 li $t0, 5
 sw $t0, var_add
-lw $a0, var_add
+lw $t0, var_add
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10
@@ -13,7 +14,8 @@ li $v0, 11
 syscall
 li $t0, 20
 sw $t0, var_add
-lw $a0, var_add
+lw $t0, var_add
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10

@@ -1,0 +1,13 @@
+# Función que llama a otra función (prueba del bug de $ra)
+func doble(x) {
+  return x + x
+}
+
+func cuadruple(x) {
+  return doble(doble(x))
+}
+
+# cuadruple(3) = doble(doble(3)) = doble(6) = 12
+print cuadruple(3)
+# cuadruple(5) = doble(doble(5)) = doble(10) = 20
+print cuadruple(5)

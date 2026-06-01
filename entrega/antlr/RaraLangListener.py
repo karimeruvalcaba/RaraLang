@@ -1,4 +1,4 @@
-# Generated from ./antlr/RaraLang.g4 by ANTLR 4.13.2
+# Generated from C:/Users/josel/GitHub/RaraLang/entrega/antlr/RaraLang.g4 by ANTLR 4.13.2
 from antlr4 import *
 if "." in __name__:
     from .RaraLangParser import RaraLangParser
@@ -17,6 +17,24 @@ class RaraLangListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by RaraLangParser#funcDecl.
+    def enterFuncDecl(self, ctx:RaraLangParser.FuncDeclContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#funcDecl.
+    def exitFuncDecl(self, ctx:RaraLangParser.FuncDeclContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#paramList.
+    def enterParamList(self, ctx:RaraLangParser.ParamListContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#paramList.
+    def exitParamList(self, ctx:RaraLangParser.ParamListContext):
+        pass
+
+
     # Enter a parse tree produced by RaraLangParser#printStmt.
     def enterPrintStmt(self, ctx:RaraLangParser.PrintStmtContext):
         pass
@@ -32,6 +50,60 @@ class RaraLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by RaraLangParser#assignStmt.
     def exitAssignStmt(self, ctx:RaraLangParser.AssignStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#ifStmt.
+    def enterIfStmt(self, ctx:RaraLangParser.IfStmtContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#ifStmt.
+    def exitIfStmt(self, ctx:RaraLangParser.IfStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#whileStmt.
+    def enterWhileStmt(self, ctx:RaraLangParser.WhileStmtContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#whileStmt.
+    def exitWhileStmt(self, ctx:RaraLangParser.WhileStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#blockStmt.
+    def enterBlockStmt(self, ctx:RaraLangParser.BlockStmtContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#blockStmt.
+    def exitBlockStmt(self, ctx:RaraLangParser.BlockStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#returnStmt.
+    def enterReturnStmt(self, ctx:RaraLangParser.ReturnStmtContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#returnStmt.
+    def exitReturnStmt(self, ctx:RaraLangParser.ReturnStmtContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#toAddExpr.
+    def enterToAddExpr(self, ctx:RaraLangParser.ToAddExprContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#toAddExpr.
+    def exitToAddExpr(self, ctx:RaraLangParser.ToAddExprContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#compareExpr.
+    def enterCompareExpr(self, ctx:RaraLangParser.CompareExprContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#compareExpr.
+    def exitCompareExpr(self, ctx:RaraLangParser.CompareExprContext):
         pass
 
 
@@ -98,6 +170,15 @@ class RaraLangListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by RaraLangParser#call.
+    def enterCall(self, ctx:RaraLangParser.CallContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#call.
+    def exitCall(self, ctx:RaraLangParser.CallContext):
+        pass
+
+
     # Enter a parse tree produced by RaraLangParser#var.
     def enterVar(self, ctx:RaraLangParser.VarContext):
         pass
@@ -113,6 +194,24 @@ class RaraLangListener(ParseTreeListener):
 
     # Exit a parse tree produced by RaraLangParser#paren.
     def exitParen(self, ctx:RaraLangParser.ParenContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#unaryExpr.
+    def enterUnaryExpr(self, ctx:RaraLangParser.UnaryExprContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#unaryExpr.
+    def exitUnaryExpr(self, ctx:RaraLangParser.UnaryExprContext):
+        pass
+
+
+    # Enter a parse tree produced by RaraLangParser#argList.
+    def enterArgList(self, ctx:RaraLangParser.ArgListContext):
+        pass
+
+    # Exit a parse tree produced by RaraLangParser#argList.
+    def exitArgList(self, ctx:RaraLangParser.ArgListContext):
         pass
 
 

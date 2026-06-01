@@ -1,0 +1,14 @@
+# if con else: solo una rama se ejecuta
+x <-- 7
+if x > 5 then
+  print 1
+else
+  print 0
+# Debe imprimir 1
+# Condición falsa → rama else
+y <-- 2
+if y > 5 then
+  print 1
+else
+  print 0
+# Debe imprimir 0

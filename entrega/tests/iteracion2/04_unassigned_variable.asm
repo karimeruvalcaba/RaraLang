@@ -3,7 +3,8 @@ var_b: .word 0
 .text
 .globl main
 main:
-lw $a0, var_b
+lw $t0, var_b
+move $a0, $t0
 li $v0, 1
 syscall
 li $a0, 10
