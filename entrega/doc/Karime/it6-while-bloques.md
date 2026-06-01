@@ -3,7 +3,6 @@ iteracion: 6
 tema: While y bloques de sentencias
 tiempo_estimado: 30 min
 ---
-
 # Iteración 5 — While y bloques
 
 ## Meta
@@ -59,6 +58,7 @@ Tu suite debe cubrir:
 > la condición y buffer para el cuerpo.
 >
 > Necesito:
+>
 > - `enterWhileStmt` para preparar el frame con las etiquetas del ciclo
 > - `exitWhileStmt` para ensamblar condición + cuerpo con los saltos
 > - El `enterEveryRule` que ya existe debe detectar también la transición al cuerpo del while
@@ -72,12 +72,14 @@ Tu suite debe cubrir:
 
 **¿Cuántos saltos tiene un while en el código generado? ¿Cuál va hacia adelante y cuál hacia atrás?**
 
-> _
+Dos saltos. Primero un beq que salta hacia adelante a while_end si la condición es falsa, y al final del cuerpo un b que salta hacia atrás a while_start para repetir. El primero sale del ciclo y el segundo lo repite.
 
 **Escribe (o pídele al LLM) un programa con tres while anidados. ¿Funciona correctamente? Describe brevemente qué hace el programa.**
 
-> _
+El test 03_nested_while.rara tiene dos whiles anidados: i de 1 a 2 y j de 1 a 2, imprime i+j para cada combinación y da 2, 3, 3, 4. Con tres niveles funciona igual porque cada while tiene su propio frame con sus etiquetas y se ensambla de adentro
+hacia afuera. Un tercero con k de 1 a 2 imprimiría i+j+k para los 8 tríos.
 
-**¿Qué pasaría si el `exitBlockStmt` no existiera en el Listener? ¿Daría error?**
+**¿Qué pasaría si el `exitBlockStmt` no existiera en el Listener?**
 
-> _
+Nada, porque exitBlockStmt solo tiene pass y no genera ninguna instrucción. Si no existiera, ANTLR llamaría la versión vacía del listener base que tampoco hace nada.
+El comportamiento sería exactamente el mismo porque el código de las sentencias dentro del bloque ya se emitió por sus propios métodos antes de que le toque a exitBlockStmt.

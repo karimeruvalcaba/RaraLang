@@ -3,7 +3,6 @@ iteracion: 7
 tema: Declaración y llamada a funciones
 tiempo_estimado: 45 min
 ---
-
 # Iteración 6 — Funciones
 
 ## Meta
@@ -91,6 +90,7 @@ Tu suite debe cubrir:
 > guardemos `$ra` en la pila del procesador, y lo restauremos después.
 >
 > Necesito:
+>
 > - `enterFuncDecl` para marcar que estamos dentro de una función y guardar los parámetros
 > - `exitFuncDecl` para cerrar la función con `jr $ra`
 > - `exitReturnStmt` para mover el resultado a `$v0` y retornar
@@ -102,12 +102,16 @@ Tu suite debe cubrir:
 
 **¿Por qué las funciones de este compilador no pueden ser recursivas? Explícalo en tus palabras.**
 
-> _
+Porque los parámetros se guardan como variables globales en .data, entonces cada uno tiene una sola dirección de memoria. Si una función se llama a sí misma, la segunda
+llamada sobreescribe los parámetros de la primera en esa misma dirección. Cuando la llamada recursiva termina y la original quiere usar sus parámetros, ya tienen los valores de la llamada interna. No existe pila de activación, solo una celda de memoria por parámetro.
 
-**Prueba una función que llama a otra. ¿Funcionó directamente o hubo que corregir el bug de `$ra`? Describe qué síntoma viste cuando fallaba.**
+**Prueba una función que llama a otra. ¿Funcionó directamente o hubo que corregir el bug de `$ra`?**
 
-> _
+El modelo ya lo anticipó y lo corrigió. Cuando está dentro de una función y va a llamar a otra, guarda $ra en la pila del procesador antes del jal y lo restaura después. El test 04_func_calls_func.rara prueba cuadruple(3) que llama a doble(doble(3)) y da 12 y 20 correctamente.
+
+Sin esa corrección el síntoma sería que el programa daría un resultado incorrecto o se quedaría colgado, porque jr $ra en cuadruple saltaría a la dirección que jal doble
+dejo en $ra en vez de regresar a main.
 
 **¿Qué pasa si llamas a una función con más argumentos de los que espera? ¿Con menos? ¿Tu compilador lo detecta?**
 
-> _
+No detecta nada, no hay ninguna validación. Con más argumentos simplemente carga registros que la función nunca lee, sin crash. Con menos argumentos la función lee de registros que traen basura del contexto anterior y produce resultados incorrectos sin decir nada.

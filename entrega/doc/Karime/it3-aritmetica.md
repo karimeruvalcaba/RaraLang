@@ -3,7 +3,6 @@ iteracion: 3
 tema: Aritmética básica
 tiempo_estimado: 45 min
 ---
-
 # Iteración 3 — Aritmética
 
 ## Meta
@@ -66,7 +65,6 @@ Tu suite debe cubrir:
 >
 > Los operadores en RaraLang son `+`, `-`, `×` y `÷` (caracteres Unicode).
 > La gramática debe expresar que `×` y `÷` tienen mayor precedencia que `+` y `-`.
->
 
 ---
 
@@ -74,12 +72,12 @@ Tu suite debe cubrir:
 
 **¿Qué resultado da `2 + 3 × 4` en tu compilador? ¿Es el que esperabas? ¿Cómo lo verificaste?**
 
-> _
+Da 14, este es el correcto. La gramática mete la multiplicación más adentro en el árbol que la suma, entonces se evalúa primero. Lo revisé con 02_precedence.rara que también prueba (2 + 3) × 4 y da 20.
 
 **En la división entera, ¿qué pasa con el residuo? ¿Dónde queda? ¿Se pierde?**
 
-> _
+Si se pierde. MIPS guarda cociente y residuo en registros separados y el compilador solo toma el cociente, nunca el residuo. Para 10 ÷ 3, QtSPIM imprime 3 y el 1 que sobra simplemente se descarta sin decir nada.
 
 **Explica con tus palabras por qué el orden en que se sacan los registros de la pila importa para la resta.**
 
-> _
+La pila es LIFO, entonces el ultimo en entrar es el primero en salir. Para a - b, primero se empuja a y luego b, entonces al hacer pop sale b primero (ese es el operando derecho) y a sale despues (el izquierdo). Si se sacaran al reves se haria b - a en lugar de a - b. Para 10 - 3 daria -7 en vez de 7. Con suma y multiplicación no importa porque son conmutativas, pero con resta y división sí cambia el resultado.

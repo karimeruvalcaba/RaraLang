@@ -3,7 +3,6 @@ iteracion: 1
 tema: Literales enteros, números en otras bases, strings, y print
 tiempo_estimado: 30 min
 ---
-
 # Iteración 1 — Literales y print
 
 ## Meta
@@ -69,19 +68,21 @@ Ajusta según lo que ya tengas. Úsalo como punto de partida, no copiar/pegar ci
 > **Para `print "hola"`:**
 > Guardar el texto en la sección `.data` como una cadena terminada en cero (`.asciiz`).
 > Cargar su dirección en un registro y usar la syscall de print_string (syscall 4).
->
+
 ---
 
 ## Reflexión (llenar después de terminar esta iteración)
 
 **¿Qué decidió el modelo sobre cómo guardar una cadena en memoria?**
 
-> _
+La guarda en la sección .data como .asciiz con una etiqueta numerada (str0, str1, etc.). En lugar de empujar un registro $t a la pila, empuja el nombre de la etiqueta como string
+de Python. Cuando va a imprimir, detecta que el valor empieza con "str" y usa syscall 4 en vez de syscall 1. Es un truco de convención de nombres para no necesitar un sistema de tipos real.
 
 **`[FF:16]` y `255` deben imprimir lo mismo. ¿Lo hacen? ¿Por qué?**
 
-> _
+Si, imprimen lo mismo. exitBased convierte FF en base 16 y da 255, luego emite li $t0, 255.
+Luego, exitInt con print 255 también emite li $t0, 255. Los dos caminos producen el mismo MIPS y QtSPIM imprime el mismo número.
 
 **¿Qué pasaría si escribes `[29:2]`? (el dígito 9 no existe en base 2 XD) ¿Lo probaste?**
 
-> _
+El lexer lo acepta sin tronar porque la regla acepta cualquier dígito hexadecimal y el 9 entra. Sin embargo, cuando python intenta convertir "29" en base 2 dentro de exitBased truena con un ValueError y el compilador se muere con traceback y todo. El error nunca lo detecta ni el lexer ni el parser, solo hasta que python hace la conversión.
