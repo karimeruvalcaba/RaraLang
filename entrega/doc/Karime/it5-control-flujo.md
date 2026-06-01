@@ -3,7 +3,6 @@ iteracion: 5
 tema: Comparaciones e if/then/else
 tiempo_estimado: 45 min
 ---
-
 # Iteración 4 — Control de flujo
 
 ## Meta
@@ -90,6 +89,7 @@ Tu suite debe cubrir:
 > está por procesarse es el primer stmt hijo del ifStmt, sabemos que terminó la condición.
 >
 > Necesito:
+>
 > - `exitEq`, `exitNeq`, `exitLt`, `exitGt`
 > - Una clase o estructura `_CtrlFrame` para guardar los buffers de un bloque if
 > - `enterIfStmt` para preparar el frame
@@ -104,12 +104,13 @@ Tu suite debe cubrir:
 
 **¿Para qué sirve `enterEveryRule` en esta implementación? ¿Por qué no basta con `enterIfStmt` y `exitIfStmt`?**
 
-> _
+enterIfStmt dispara antes de que se procese cualquier parte del if, así que todavía no hay condición ni nada. exitIfStmt dispara cuando ya todo terminó. El problema es que necesitamos saber exactamente cuándo terminó la condición y empieza el then, y eso pasa en medio del recorrido. enterEveryRule dispara antes de cada nodo, y al filtrar por sentencias que son hijos directos del if podemos detectar ese momento exacto y cambiar el buffer activo. Sin esto todo el código del if caería en el mismo buffer.
 
 **Prueba un if anidado dentro de otro if. ¿Funciona? Si algo falla, ¿dónde está el problema?**
 
-> _
+Sí funciona. El archivo 04_nested_if.rara lo prueba con x > 0 afuera y y > 0 adentro, cada uno con su else, y debe imprimir 1. Funciona porque cada if crea su propio frame con sus propios buffers y se mete en la pila. El if interno ensambla primero y su código termina en el buffer correcto del frame externo. Al salir cada quien toma lo suyo.
 
 **El modelo generó etiquetas como `if_end_1`, `if_end_2`, etc. ¿Por qué tiene que ser un número diferente para cada if? ¿Qué pasaría si todos usaran la misma etiqueta?**
 
-> _
+MIPS no permite dos etiquetas con el mismo nombre en el mismo archivo, el ensamblador truena. Pero aunque no tronara, todos los saltos apuntarían al mismo lugar y un if
+saltaría al final de otro if que no es el suyo. El programa haría cosas completamente distintas a lo que uno escribió. Por eso hay un contador que sube con cada if nuevo.

@@ -3,7 +3,6 @@ iteracion: 2
 tema: Variables enteras y asignación
 tiempo_estimado: 30 min
 ---
-
 # Iteración 2 — Variables
 
 ## Meta
@@ -59,12 +58,14 @@ sin haberla asignado. ¿Qué hace tu compilador? ¿Debería ser un error?
 
 **¿Cómo decidió el modelo reservar espacio para la variable? ¿Dónde queda en el archivo `.asm`?**
 
-> _
+La primera vez que ve una variable le mete var_x: .word 0 en la sección .data.
+En el .asm final queda hasta arriba antes del .text, como una palabra de 32 bits
+inicializada en cero. Para leerla usa lw y para escribirla sw con el label de la variable.
 
-**Prueba b <-- 5 ¿Qué se genera, qué hace QtSpim? 
+**Prueba b <-- 5 ¿Qué se genera, qué hace QtSpim?**
 
-> _
+Guarda el 5 en la dirección de var_b en memoria. En .data aparece var_b: .word 0. No se imprime nada en pantalla.
 
-**¿Qué pasa si asignas una variable dos veces? 
+**¿Qué pasa si asignas una variable dos veces?**
 
-> _
+Simplemente sobreescribe. La función que declara variables revisa primero si ya existe, asi que el .word 0 solo aparece una vez en .data. La segunda asignación nada más pisa el valor anterior en esa misma dirección de memoria.

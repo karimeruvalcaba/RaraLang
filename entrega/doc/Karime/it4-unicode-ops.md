@@ -3,7 +3,6 @@ iteracion: 4
 tema: Operadores enteros Unicode (⊞ ⊠ ≈ ±)
 tiempo_estimado: 30 min
 ---
-
 # Iteración 4 — Operadores Unicode
 
 ## Meta
@@ -69,8 +68,6 @@ Tu suite debe cubrir:
 > La gramática necesita añadir estos como alternativas en la regla de expresión. Los
 > operadores binarios siguen el mismo patrón que `+` y `-`. El unario `±` va como una
 > alternativa de la forma `± expr`.
->
-
 
 ---
 
@@ -78,12 +75,16 @@ Tu suite debe cubrir:
 
 **`a ≈ b` con `a = -3` y `b = -1`: ¿qué resultado da tu compilador? ¿Es el esperado si "piso" significa redondear hacia menos infinito?**
 
-> _
+Da -2, que es el correcto. El compilador suma los dos (-3 + -1 = -4) y luego hace un desplazamiento aritmético a la derecha de 1 bit con sra. Eso divide entre 2 redondeando hacia menos infinito, que es lo que queremos. -4 >> 1 = -2. Si en cambio se usara división entera normal, MIPS trunca hacia cero y para algunos negativos daría diferente. El archivo 04_avg.rara cubre este caso con los negativos.
 
 **La especificación de `⊠` dice `2a + b`, no `a × b`. ¿En qué caso daría el mismo resultado que la multiplicación? ¿En cuáles no?**
 
-> _
+2a + b es igual a a × b cuando b(a - 1) = 2a, es decir b = 2a / (a - 1).
+Para a=2, b=4: 2⊠4 = 4+4 = 8 y 2×4 = 8, igual.
+Para a=3, b=3: 3⊠3 = 6+3 = 9 y 3×3 = 9, igual.
+Pero en la mayoría no coinciden. Por ejemplo 4⊠5 = 8+5 = 13 mientras que 4×5 = 20.
 
 **`± ±5` debería dar 5. ¿Lo da? ¿Cómo implementó el modelo la doble negación?**
 
-> _
+Si, da 5. No hay ningún caso especial para doble negación, el modelo simplemente aplica la misma operación dos veces: primero ±5 queda -5, luego el segundo ± hace 0 - (-5) = 5.
+Cada aplicación de ± saca un valor de la pila, le hace cero menos ese valor, y empuja el resultado.
