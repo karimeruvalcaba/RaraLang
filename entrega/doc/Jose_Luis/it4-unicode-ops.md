@@ -78,12 +78,12 @@ Tu suite debe cubrir:
 
 **`a ≈ b` con `a = -3` y `b = -1`: ¿qué resultado da tu compilador? ¿Es el esperado si "piso" significa redondear hacia menos infinito?**
 
-> _
+> Da -2, que sí es el esperado. `(-3 + -1) / 2 = -4 / 2 = -2`. Como se implementó con `sra` (shift aritmético a la derecha), el signo se preserva y se redondea hacia menos infinito automáticamente. Si usáramos `div` normal de MIPS el resultado también sería -2 en este caso, pero con -3 y -2 sería diferente: `sra` de -5 da -3 (piso), `div` daría -2 (truncación hacia cero).
 
 **La especificación de `⊠` dice `2a + b`, no `a × b`. ¿En qué caso daría el mismo resultado que la multiplicación? ¿En cuáles no?**
 
-> _
+> `2a + b = a × b` cuando `b = 2a/(a-1)`. Casos enteros simples: `2 ⊠ 4 = 8 = 2×4`, `3 ⊠ 3 = 9 = 3×3`. En la mayoría de los casos son diferentes, por ejemplo `4 ⊠ 5 = 13` pero `4 × 5 = 20`.
 
 **`± ±5` debería dar 5. ¿Lo da? ¿Cómo implementó el modelo la doble negación?**
 
-> _
+> Sí da 5. El modelo lo implementó como dos `sub` encadenados: primero `sub $t1, $zero, $t0` que da -5, luego `sub $t2, $zero, $t1` que da 5. El operador `±` se coloca en la regla `factor` y es recursivo: `±factor`, entonces `±±5` se parsea como `±(±5)` y genera dos negaciones consecutivas.

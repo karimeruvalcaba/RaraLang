@@ -102,12 +102,12 @@ Tu suite debe cubrir:
 
 **¿Por qué las funciones de este compilador no pueden ser recursivas? Explícalo en tus palabras.**
 
-> _
+> Porque los parámetros se guardan en variables estáticas en `.data`, una por función. Si `doble` se llama a sí misma, la segunda llamada sobreescribe `var_x` antes de que la primera haya terminado de usarla. Cuando regresa la segunda llamada, la primera ya perdió su valor original. Para soportar recursión habría que guardar los parámetros en la pila del procesador, no en memoria estática.
 
 **Prueba una función que llama a otra. ¿Funcionó directamente o hubo que corregir el bug de `$ra`? Describe qué síntoma viste cuando fallaba.**
 
-> _
+> Hubo que manejarlo desde el inicio. El síntoma clásico sería que el programa se cuelga en un loop infinito o salta a una dirección incorrecta. Cuando `cuadruple` llama a `doble` con `jal`, ese `jal` sobreescribe `$ra` con la dirección de retorno de `doble`. Cuando `doble` regresa con `jr $ra`, OK. Pero cuando `cuadruple` quiere regresar, `$ra` ya tiene la dirección de adentro de `cuadruple`, no de donde se llamó. El fix fue guardar `$ra` en la pila antes del `jal` interno y restaurarlo después.
 
 **¿Qué pasa si llamas a una función con más argumentos de los que espera? ¿Con menos? ¿Tu compilador lo detecta?**
 
-> _
+> No lo detecta, no hay validación de aridad. Con más argumentos, los extras se mueven a `$a2`, `$a3` etc. pero la función nunca los lee porque solo usa sus parámetros declarados, así que simplemente se ignoran sin error. Con menos argumentos, los registros `$ai` que faltan tendrán basura de lo que estaba antes, y si la función los usa como parámetros recibirá valores incorrectos, también sin error.

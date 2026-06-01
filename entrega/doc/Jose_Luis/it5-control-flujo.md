@@ -104,12 +104,12 @@ Tu suite debe cubrir:
 
 **¿Para qué sirve `enterEveryRule` en esta implementación? ¿Por qué no basta con `enterIfStmt` y `exitIfStmt`?**
 
-> _
+> Se necesita para detectar el momento exacto en que termina la condición y empieza el bloque `then`. El problema es que cuando `exitIfStmt` dispara, el código de la condición, el then y el else ya se generaron todos mezclados en la misma lista. `enterEveryRule` avisa justo antes de entrar a cada regla, entonces cuando ve que va a entrar al primer `stmt` hijo del `ifStmt`, sabe que la condición ya terminó y cambia el buffer activo a `then`. Sin eso no habría forma de saber dónde cortar.
 
 **Prueba un if anidado dentro de otro if. ¿Funciona? Si algo falla, ¿dónde está el problema?**
 
-> _
+> Sí funciona. Hubo un bug al principio: `enterEveryRule` también disparaba para la expresión condición (que es hija directa del `ifStmt` igual que los stmt), entonces intentaba sacar un registro de la pila cuando ésta estaba vacía. Se arregló filtrando que `ctx` sea instancia de `StmtContext` antes de hacer la transición. Con ese fix los if anidados funcionan correctamente.
 
 **El modelo generó etiquetas como `if_end_1`, `if_end_2`, etc. ¿Por qué tiene que ser un número diferente para cada if? ¿Qué pasaría si todos usaran la misma etiqueta?**
 
-> _
+> Porque en ensamblador no pueden existir dos etiquetas con el mismo nombre en el mismo archivo. Si dos ifs usaran `if_end` y el primero tiene `beq ... if_end`, saltaría a la primera aparición de esa etiqueta en el archivo, no necesariamente al final de su propio bloque. El código se volvería completamente incorrecto, saltando a lugares equivocados.

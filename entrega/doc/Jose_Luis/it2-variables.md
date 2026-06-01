@@ -59,12 +59,12 @@ sin haberla asignado. ¿Qué hace tu compilador? ¿Debería ser un error?
 
 **¿Cómo decidió el modelo reservar espacio para la variable? ¿Dónde queda en el archivo `.asm`?**
 
-> _
+> Usa `var_nombre: .word 0` en la sección `.data`. La primera vez que el compilador ve una variable (ya sea leyéndola o asignándola) la declara ahí. Queda al inicio del archivo, antes del `.text`.
 
-**Prueba b <-- 5 ¿Qué se genera, qué hace QtSpim? 
+**Prueba b <-- 5 ¿Qué se genera, qué hace QtSpim?**
 
-> _
+> Genera `var_b: .word 0` en `.data`, luego `li $t0, 5` y `sw $t0, var_b` en el código. En QtSPIM simplemente guarda el 5 en memoria, no imprime nada porque no hay `print`. Si después haces `print b` sí aparece el 5.
 
-**¿Qué pasa si asignas una variable dos veces? 
+**¿Qué pasa si asignas una variable dos veces?**
 
-> _
+> Solo se declara una vez en `.data` (el compilador lleva un set de variables vistas). Cada asignación genera un `sw` que sobreescribe el valor anterior en la misma dirección. La segunda asignación gana, que es el comportamiento esperado.

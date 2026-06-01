@@ -76,12 +76,12 @@ Ajusta según lo que ya tengas. Úsalo como punto de partida, no copiar/pegar ci
 
 **¿Qué decidió el modelo sobre cómo guardar una cadena en memoria?**
 
-> _
+> La guarda en la sección `.data` con una etiqueta automática (str0, str1, etc.) usando la directiva `.asciiz`, que agrega el null-terminator al final. Cuando se hace print, carga la dirección con `la` y usa syscall 4.
 
 **`[FF:16]` y `255` deben imprimir lo mismo. ¿Lo hacen? ¿Por qué?**
 
-> _
+> Sí, imprimen lo mismo. El compilador convierte `[FF:16]` a decimal en Python con `int("FF", 16)` que da 255, y luego genera `li $t0, 255` igual que si fuera un entero normal. Para MIPS ya no hay diferencia, el número ya llegó como decimal.
 
 **¿Qué pasaría si escribes `[29:2]`? (el dígito 9 no existe en base 2 XD) ¿Lo probaste?**
 
-> _
+> Sí lo probé. Python lanza un `ValueError` en `int("29", 2)` porque 9 no es dígito válido en base 2. El compilador truena con una excepción sin mensaje claro, simplemente se cae. No hay validación explícita, el error lo atrapa Python antes de generar cualquier MIPS.

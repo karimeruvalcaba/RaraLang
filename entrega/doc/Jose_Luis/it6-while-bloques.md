@@ -72,12 +72,12 @@ Tu suite debe cubrir:
 
 **¿Cuántos saltos tiene un while en el código generado? ¿Cuál va hacia adelante y cuál hacia atrás?**
 
-> _
+> Tiene dos. El `beq cond_reg, $zero, while_end_N` va hacia adelante (salta al final del ciclo cuando la condición es falsa). El `b while_start_N` va hacia atrás (regresa al inicio para reevaluar la condición). El salto hacia atrás es lo que hace que sea un ciclo y no código lineal.
 
 **Escribe (o pídele al LLM) un programa con tres while anidados. ¿Funciona correctamente? Describe brevemente qué hace el programa.**
 
-> _
+> Probé con dos anidados primero (los tests ya lo cubren con `i` y `j`). Con tres anidados funciona igual, usé un programa que imprime `i+j+k` para i,j,k de 1 a 2, dando los 8 valores posibles. Cada while tiene sus etiquetas propias (`while_start_1`, `while_start_2`, `while_start_3`) y los frames se apilan correctamente, el interno termina antes de que el externo avance.
 
 **¿Qué pasaría si el `exitBlockStmt` no existiera en el Listener? ¿Daría error?**
 
-> _
+> No daría error. La clase base `RaraLangListener` ya tiene una implementación vacía para todos los métodos. Si no sobreescribimos `exitBlockStmt`, se llamaría la del padre que no hace nada, que es exactamente lo que queremos. Las sentencias dentro del bloque ya emitieron su código en los eventos correctos, el bloque en sí no necesita hacer nada extra.

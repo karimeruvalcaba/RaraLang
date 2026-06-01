@@ -74,12 +74,12 @@ Tu suite debe cubrir:
 
 **¿Qué resultado da `2 + 3 × 4` en tu compilador? ¿Es el que esperabas? ¿Cómo lo verificaste?**
 
-> _
+> Da 14, que es el correcto. Lo verifiqué corriendo el `.asm` en QtSPIM y comparando con el resultado a mano. La gramática separa `term` (multiplicación) de `expr` (suma) en reglas distintas, así `×` tiene mayor precedencia que `+` de forma natural.
 
 **En la división entera, ¿qué pasa con el residuo? ¿Dónde queda? ¿Se pierde?**
 
-> _
+> El residuo queda en el registro especial `hi` de MIPS. El compilador usa `mflo` para tomar solo el cociente, entonces el residuo técnicamente sigue en `hi` pero nadie lo lee y se sobreescribe con la siguiente operación. No se reporta ni se guarda, simplemente se ignora.
 
 **Explica con tus palabras por qué el orden en que se sacan los registros de la pila importa para la resta.**
 
-> _
+> Porque la resta no es conmutativa. Si tenemos `x - y`, primero se evalúa `x` (queda en la pila) y luego `y`. Como es una pila, el último en entrar es el primero en salir, entonces al hacer `pop` primero sacamos `y` (operando derecho) y luego `x` (operando izquierdo). La instrucción queda `sub result, x, y`. Si lo invirtiéramos estaríamos calculando `y - x`, que da el signo contrario.
